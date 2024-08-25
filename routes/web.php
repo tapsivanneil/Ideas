@@ -1,0 +1,24 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IdeaController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', [IdeaController::class, 'showFeed'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::post('/idea', [IdeaController::class, 'shareIdea'])->name('idea.share');
+Route::post('/unlikeidea/{id}', [IdeaController::class, 'likeIdea'])->name('idea.like');
+Route::post('/likeidea/{id}', [IdeaController::class, 'unlikeIdea'])->name('idea.unlike');
+
+require __DIR__.'/auth.php';
+
