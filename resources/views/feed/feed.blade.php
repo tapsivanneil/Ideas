@@ -34,7 +34,6 @@
                 @endif
 
 
-
             <form action="" method="post" class="flex flex-1 w-54 justify-center items-center">
                 @csrf
                 <input type="text" name="idea_content" class=" w-full m-1" placeholder="Comment">

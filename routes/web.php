@@ -4,11 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
 
-Route::get('/', function () {
+Route::get('/ideas', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [IdeaController::class, 'showFeed'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [IdeaController::class, 'showFeed'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
