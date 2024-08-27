@@ -73,7 +73,18 @@ class IdeaController extends Controller
 
     public function viewComments($id){
         return view('feed.comment', [
-            'comments' =>  ])
+            'comments' =>  UserComment::where('idea_id', $id)
+            ->orderby('id', 'desc')
+            ->get(),
+        ]);
+    }
+
+    public function sendComment(Request $request, $id){
+
+        $error = $request->validate([
+            'user_comment' => 'required'
+        ]);
+
     }
 
 }

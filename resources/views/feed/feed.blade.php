@@ -33,14 +33,11 @@
                     </form>
                 @endif
 
+                    @include('feed.send-comment')
+        </div>
 
-            <form action="" method="post" class="flex flex-1 w-54 justify-center items-center">
-                @csrf
-                <input type="text" name="idea_content" class=" w-full m-1" placeholder="Comment">
-                <button type="submit" class="p-1 w-20 h-10  transition ease-in-out delay-150 bg-blue-500 text-white hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-                    <i class="bi bi-send"></i>
-                </button>
-            </form>
+        <div class="font-sans text-red-500 ">
+            {{ $errors->first('user_comment') }}
         </div>
 
 
