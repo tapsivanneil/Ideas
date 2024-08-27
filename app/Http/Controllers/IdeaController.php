@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Models\UserLike;
+use App\Models\UserComment;
+
 use Illuminate\Support\Facades\Auth;
 
 class IdeaController extends Controller
@@ -29,6 +31,7 @@ class IdeaController extends Controller
         return view('/dashboard', [
 
             'ideas' => Idea::join('users', 'users.id', '=', 'ideas.user_id')->select('ideas.*', 'ideas.id', 'ideas.idea', 'users.username')
+            ->orderby('ideas.id', 'desc')
             ->get(),
             'liked' => UserLike::where('user_id', $user->id)->get(),
         ] );
@@ -66,6 +69,11 @@ class IdeaController extends Controller
 
         return redirect('/dashboard');
 
+    }
+
+    public function viewComments($id){
+        return view('feed.comment', [
+            'comments' =>  ])
     }
 
 }
