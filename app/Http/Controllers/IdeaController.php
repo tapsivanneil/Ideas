@@ -73,8 +73,9 @@ class IdeaController extends Controller
 
     public function viewComments($id){
         return view('feed.comment', [
-            'comments' =>  UserComment::where('idea_id', $id)
-            ->orderby('id', 'desc')
+            'comments' =>  UserComment::join('users', 'users.id', '=', 'user_comments.user_id')
+            ->select('user_comments.*', 'users.username')
+            ->orderby('user_comments.id', 'desc')
             ->get(),
         ]);
     }
