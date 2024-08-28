@@ -36,10 +36,6 @@
                     @include('feed.send-comment')
         </div>
 
-        <div class="font-sans text-red-500 ">
-            {{ $errors->first('user_comment') }}
-        </div>
-
 
     </div>
 
