@@ -1,6 +1,6 @@
 
 
-<form action="{{route('idea.view.comment', ['id' => $idea->id])}}" method="post">
+<form action="{{route('idea.view.comment', ['id' => $idea->id])}}" method="get">
     @csrf
     <button class="ml-1 w-20 h-10  transition ease-in-out delay-150 bg-blue-500 text-white hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
         <i class="bi bi-chat-left-text"></i>
