@@ -13,6 +13,6 @@ class UserComment extends Model
         'comment',
         'idea_id',
         'user_id',
-        'likes'
+        'comment_likes'
     ];
 }

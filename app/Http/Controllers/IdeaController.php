@@ -22,7 +22,7 @@ class IdeaController extends Controller
             'user_id' => $user->id,
         ]);
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
     public function showFeed(){
@@ -49,7 +49,7 @@ class IdeaController extends Controller
             'idea_id' => $id,
         ]);
 
-        return redirect('/dashboard');
+        return redirect('/');
 
     }
 
@@ -67,7 +67,7 @@ class IdeaController extends Controller
             $like->decrement('likes');
         }
 
-        return redirect('/dashboard');
+        return redirect('/');
 
     }
 
@@ -81,9 +81,21 @@ class IdeaController extends Controller
 
     public function sendComment(Request $request, $id){
 
+        $user = Auth::user();
+
         $error = $request->validate([
             'user_comment' => 'required'
         ]);
+
+
+        $sendComment = UserComment::create([
+            'user_id' => $user->id,
+            'idea_id' => $id,
+            'comment_likes' => 0,
+            'comment' => $request->user_comment
+        ]);
+
+        return redirect(route('idea.view.comment', ['id' => $id]));
 
     }
 

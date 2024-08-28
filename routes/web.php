@@ -21,7 +21,7 @@ Route::post('/idea', [IdeaController::class, 'shareIdea'])->name('idea.share');
 Route::post('/unlikeidea/{id}', [IdeaController::class, 'likeIdea'])->name('idea.like');
 Route::post('/likeidea/{id}', [IdeaController::class, 'unlikeIdea'])->name('idea.unlike');
 
-Route::post('/comments/{id}', [IdeaController::class, 'viewComments'])->name('idea.view.comment');
+Route::get('/comments/{id}', [IdeaController::class, 'viewComments'])->name('idea.view.comment');
 Route::post('/sendComments/{id}', [IdeaController::class, 'sendComment'])->name('idea.send.comment');
 
 
