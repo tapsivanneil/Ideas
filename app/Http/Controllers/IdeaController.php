@@ -76,6 +76,7 @@ class IdeaController extends Controller
             'comments' =>  UserComment::join('users', 'users.id', '=', 'user_comments.user_id')
             ->select('user_comments.*', 'users.username')
             ->orderby('user_comments.id', 'desc')
+            ->where('user_comments.idea_id', $id)
             ->get(),
         ]);
     }
