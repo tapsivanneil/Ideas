@@ -29,22 +29,31 @@
                 </header>
             @endisset
 
-            <main class="flex flex-col w-full justify-center items-center">
-                @foreach ($comments as $comment )
-
-                <div class="shadow-md my-2 p-5">
-                    <div class="flex justify-between">
-                        <div class="font-medium">{{$comment->username}}</div>
-                        <div class="font-thin">{{$comment->created_at}}</div>
-                    </div>
-
-                    <div class="my-4">
-                        {{$comment->comment}}
-                    </div>
+            <div class="w-full max-w-100 ">
+                <div >
+                    @foreach ($ideas as $idea)
+                            @include('feed.feed')
+                    @endforeach
                 </div>
 
-                @endforeach
-            </main>
+                <div class="flex flex-col w-full">
+                    @foreach ($comments as $comment )
+                    <div class="shadow-md my-2 p-5" >
+                        <div class="flex justify-between">
+                            <div class="font-medium">{{$comment->username}}</div>
+                            <div class="font-thin">{{$comment->created_at}}</div>
+                        </div>
+
+                        <div class="my-4">
+                            {{$comment->comment}}
+                        </div>
+                    </div>
+
+                    @endforeach
+                </div>
+            </div>
+
+
         </div>
     </body>
 </html>

@@ -30,10 +30,13 @@ class IdeaController extends Controller
 
         return view('/dashboard', [
 
-            'ideas' => Idea::join('users', 'users.id', '=', 'ideas.user_id')->select('ideas.*', 'ideas.id', 'ideas.idea', 'users.username')
+            'ideas' => Idea::join('users', 'users.id', '=', 'ideas.user_id')
+            ->select('ideas.*', 'users.username')
             ->orderby('ideas.id', 'desc')
             ->get(),
-            'liked' => UserLike::where('user_id', $user->id)->get(),
+
+            'liked' => UserLike::where('user_id', $user->id)
+                    ->get(),
         ] );
     }
 
@@ -72,12 +75,25 @@ class IdeaController extends Controller
     }
 
     public function viewComments($id){
+
+        $user = Auth::user();
+
         return view('feed.comment', [
+
+            'ideas' => Idea::join('users', 'users.id', '=', 'ideas.user_id')
+                            ->where('ideas.id', $id)
+                            ->select('ideas.*', 'users.username')
+                            ->orderby('ideas.id', 'desc')
+                            ->get(),
+
+            'liked' => UserLike::where('user_id', $user->id)
+                        ->get(),
+
             'comments' =>  UserComment::join('users', 'users.id', '=', 'user_comments.user_id')
-            ->select('user_comments.*', 'users.username')
-            ->orderby('user_comments.id', 'desc')
-            ->where('user_comments.idea_id', $id)
-            ->get(),
+                            ->select('user_comments.*', 'users.username')
+                            ->orderby('user_comments.id', 'desc')
+                            ->where('user_comments.idea_id', $id)
+                            ->get(),
         ]);
     }
 
