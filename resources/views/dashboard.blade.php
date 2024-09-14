@@ -1,5 +1,5 @@
 <x-app-layout class="flex-col">
-    <div class="flex-row items-center max-w-md" style="width: 80%;">
+    <div class="flex-row items-center max-w-md">
             @include('feed.share-idea')
 
             @if ($errors->has('user_comment'))
